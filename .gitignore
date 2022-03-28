@@ -1,7 +1,0 @@
-/download/unzip/*
-/download/zip/*
-/files/*
-/var/*
-/vendor
-.phpunit.result.cache
-.env.local
