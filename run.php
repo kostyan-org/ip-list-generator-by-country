@@ -9,6 +9,8 @@ use App\Command\GenerateCommand;
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/.env');
 
+$_ENV['ROOT_DIR'] = __DIR__ . '/';
+
 $application = new Application();
 
 $application->add(new GenerateCommand);

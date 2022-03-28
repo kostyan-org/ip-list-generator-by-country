@@ -21,11 +21,11 @@ class GenerateCommand extends Command
     {
         $stopwatch = new Stopwatch();
         $downloadFileUrl =  $_ENV['DOWNLOAD_URL'];
-        $zipDir = $_ENV['ZIP_DIR'];
-        $zipFile = $_ENV['ZIP_FILE'];
-        $unzipDir = $_ENV['UNZIP_DIR'];
-        $unzipFile = $_ENV['UNZIP_FILE'];
-        $filesDir = $_ENV['FILES_DIR'];
+        $zipDir = $_ENV['ROOT_DIR'] . $_ENV['ZIP_DIR'];
+        $zipFile = $_ENV['ROOT_DIR'] . $_ENV['ZIP_FILE'];
+        $unzipDir = $_ENV['ROOT_DIR'] . $_ENV['UNZIP_DIR'];
+        $unzipFile = $_ENV['ROOT_DIR'] . $_ENV['UNZIP_FILE'];
+        $filesDir = $_ENV['ROOT_DIR'] . $_ENV['FILES_DIR'];
         $helper = $this->getHelper('question');
 
         if (file_exists($zipFile)) {
@@ -171,14 +171,14 @@ class GenerateCommand extends Command
     public function getOutputFile(string $answer, array $countries): string
     {
 
-        return $_ENV['FILES_DIR'] . $answer . '-' . implode('-', $countries) . '.dat';
+        return $_ENV['ROOT_DIR'] . $_ENV['FILES_DIR'] . $answer . '-' . implode('-', $countries) . '.dat';
     }
 
     protected function clearDir($src): void
     {
         $dir = opendir($src);
         while (false !== ($file = readdir($dir))) {
-            if (($file != '.') && ($file != '..')) {
+            if (($file != '.') && ($file != '..') && ($file != '.gitignore')) {
                 $full = $src . $file;
                 if (is_dir($full)) {
                     $this->clearDir($full);
@@ -195,7 +195,7 @@ class GenerateCommand extends Command
         $out = [];
         $dir = opendir($src);
         while (false !== ($file = readdir($dir))) {
-            if (($file != '.') && ($file != '..')) {
+            if (($file != '.') && ($file != '..') && ($file != '.gitignore')) {
                 $full = $src . $file;
                 if (is_dir($full)) {
                     $this->clearDir($full);

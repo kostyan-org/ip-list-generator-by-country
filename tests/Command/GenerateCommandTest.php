@@ -11,6 +11,7 @@ class GenerateCommandTest extends KernelTestCase
 {
     public function testExecute()
     {
+        $_ENV['ROOT_DIR'] = __DIR__ . '/../../';
         $kernel = self::bootKernel();
         $application = new Application($kernel);
         $application->add(new GenerateCommand);
