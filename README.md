@@ -6,7 +6,6 @@
 
 ![Image](https://github.com/kostyan-org/ip-list-generator-by-country/raw/gh-pages/ip-list-generator-by-country.PNG)
 
-[Home page](https://kostyan-org.github.io/ip-list-generator-by-country)
 
 This application is written in PHP and is used to generate a list of IP addresses of countries.
 The main purpose and data output format is for the [qBittorrent](https://www.qbittorrent.org) torrent client
