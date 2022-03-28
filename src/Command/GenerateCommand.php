@@ -47,12 +47,11 @@ class GenerateCommand extends Command
             $output->writeln(sprintf('New Database loaded [%s]', $unzipFileDate));
         }
         if ('no' === $answer) {
+            if (!file_exists($zipFile)) {
+                throw new RuntimeException('Need Database');
+            }
             $unzipFileDate = date("Y-m-d", filemtime($zipFile));
             $output->writeln(sprintf('Used by Database [%s]', $unzipFileDate));
-        }
-
-        if (!file_exists($zipFile)) {
-            throw new RuntimeException('Not found zip file');
         }
 
         $this->clearDir($unzipDir);
